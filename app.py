@@ -1,7 +1,7 @@
 import requests
 from flask import Flask, render_template, request, jsonify
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=".", static_folder=".")
 
 # بيانات البوت الخاصة بك
 BOT_TOKEN = "9180804627:AAEjgov9nzXgV_Wtvun7I4rkLg2wOn4Dp4s"
