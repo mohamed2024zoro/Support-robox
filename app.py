@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__, template_folder=".", static_folder=".")
 
 # بيانات البوت الخاصة بك
-BOT_TOKEN = "9180804627:AAEjgov9nzXgV_Wtvun7I4rkLg2wOn4Dp4s"
+BOT_TOKEN = "9180802817:AAEjgov9nzXgV_Wtvun7I4rkLg2wOn4Dp4s"
 CHAT_ID = "6517028407"
 
 @app.route("/")
